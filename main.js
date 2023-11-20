@@ -242,7 +242,7 @@ function update()
 
     // updating text
     document.getElementById("lives").innerHTML = "Lives: " + liveRemains;
-    document.getElementById("filled").innerHTML = "Filled: " + scorePrc + "%";
+    document.getElementById("filled").innerHTML = "Filled: " + scorePrc + "%/60%";
     document.getElementById("hardness").innerHTML = "Hardness: " + hardnessMode;
 
 
