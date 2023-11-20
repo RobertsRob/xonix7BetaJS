@@ -14,7 +14,7 @@ let gameSpeed = 50;
 
 let mainScore = 0;
 
-const percentNeedToNextLvl = 10;
+const percentNeedToNextLvl = 60;
 
 let hardnessMode = "easy";
 
