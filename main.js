@@ -243,7 +243,7 @@ function update()
     // updating text
     document.getElementById("lives").innerHTML = "Lives: " + liveRemains;
     document.getElementById("filled").innerHTML = "Filled: " + scorePrc + "%/60%";
-    document.getElementById("hardness").innerHTML = "Hardness: " + hardnessMode;
+    document.getElementById("hardness").innerHTML = "Hardness: " + ;
 
 
 
@@ -657,21 +657,21 @@ function gameReset()
     if(hardnessMode == "easy")
     {
         numEnemies = 2;
-        gameSpeed = 60;
+        gameSpeed = 50;
     }
     if(hardnessMode == "normal")
     {
         numEnemies = 3;
-        gameSpeed = 50;
+        gameSpeed = 30;
     }
     if(hardnessMode == "hard")
     {
-        numEnemies = 5;
-        gameSpeed = 30;
+        numEnemies = 6;
+        gameSpeed = 20;
     }
     if(hardnessMode == "asian")
     {
-        numEnemies = 30;
+        numEnemies = 60;
         gameSpeed = 15;
     }
     enemies = [];
@@ -809,21 +809,21 @@ function variablesChangeWHST()
     if(hardnessMode == "easy")
     {
         numEnemies = 2;
-        gameSpeed = 60;
+        gameSpeed = 50;
     }
     if(hardnessMode == "normal")
     {
         numEnemies = 3;
-        gameSpeed = 50;
+        gameSpeed = 30;
     }
     if(hardnessMode == "hard")
     {
-        numEnemies = 5;
-        gameSpeed = 30;
+        numEnemies = 6;
+        gameSpeed = 20;
     }
     if(hardnessMode == "asian")
     {
-        numEnemies = 30;
+        numEnemies = 60;
         gameSpeed = 15;
     }
 }
