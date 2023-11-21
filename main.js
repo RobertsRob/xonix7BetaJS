@@ -500,7 +500,10 @@ function update()
     posPlOneB.y = posPl.y;
 
     player.draw();
-    player.update();
+    if(!isStoped)
+    {
+        player.update();
+    }
 
 
     pposPl = player.getPos();
