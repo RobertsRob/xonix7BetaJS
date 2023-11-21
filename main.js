@@ -213,9 +213,9 @@ function update()
 
     if(gameStatus == gameDied || gameStatus == gameBegining)
     {
-        // mainScore = mainScore + scorePrc;
-        // let printSc = "Your score: " + mainScore + "!";
-        // document.getElementById("scoreText").innerHTML = printSc;
+        mainScore = mainScore + scorePrc;
+        let printSc = "Your score: " + mainScore + "!";
+        document.getElementById("scoreText").innerHTML = printSc;
 
         return;
     }
