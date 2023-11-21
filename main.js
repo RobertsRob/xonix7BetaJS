@@ -13,6 +13,7 @@ let gameStatus = gameBegining;
 let gameSpeed = 50;
 
 let mainScore = 0;
+let isStopped = false;
 
 const percentNeedToNextLvl = 60;
 
@@ -44,6 +45,9 @@ let insideEnemiesArray = [];
 
 //for cikles
 let countSnake = 0;
+
+let coutSnakeSTP = 0;
+let frst = true;
 
 
 // coordinate array creation -----
@@ -363,7 +367,10 @@ function update()
     }
 
     
+
+
     let blPx = 0;
+    
     for (let y = 0; y < arrayC.length; y++)
     {
         for (let x = 0; x < arrayC[y].length; x++) {
@@ -399,6 +406,7 @@ function update()
 
 
                 countSnake++;
+                coutSnakeSTP++;
                 ctx.fillStyle = "green";
                 ctx.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize);
 
@@ -411,6 +419,7 @@ function update()
             }
             if(arrayC[y][x] == 3)
             {
+                console.log(coutSnakeSTP > 0 && posPl.x/pixelSize == x && posPl.y/pixelSize == y);
                 if(x != 150 && x != 0 && x != 149 && y != 89 && y != 90 && y != 0)
                 {
                     if(arrayC[y+1][x] == 0 && arrayC[y-1][x] == 0 && arrayC[y][x+1] == 0 && arrayC[y][x-1] == 0)
@@ -422,29 +431,38 @@ function update()
                 blPx++;
                 ctx.fillStyle = "blue";
                 ctx.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize);
-                
-                // console.log(posPl.x/pixelSize == x && posPl.y/pixelSize == y && countSnake != 0);
-                if(posPl.x/pixelSize == x && posPl.y/pixelSize == y && countSnake != 0)
-                {
-                    //fill
-                    for (let i = 0; i < numEnemies; i++)
-                    {
-                        let posEnemy = enemies[i].getPos();
-                        arrayC[Math.round(posEnemy.y/pixelSize)][Math.round(posEnemy.x/pixelSize)] = 6;
-                    }
-                    while(filled != 0)
-                    {
-                        fillRec();
-                        
-                    }
 
-                    replacerFill();
-                    for (let i = 0; i < numEnemies; i++)
+                if(coutSnakeSTP > 0 && posPl.x/pixelSize == x && posPl.y/pixelSize == y)
+                {
+                    isStopped = true;
+                    movement = "stop";
+                    setTimeout(stopedF, 300);
+                
+                
+                    // console.log(posPl.x/pixelSize == x && posPl.y/pixelSize == y && countSnake != 0);
+                    if(posPl.x/pixelSize == x && posPl.y/pixelSize == y && countSnake != 0)
                     {
-                        let posEnemy = enemies[i].getPos();
-                        arrayC[Math.round(posEnemy.y/pixelSize)][Math.round(posEnemy.x/pixelSize)] = 4;
+                        //fill
+                        for (let i = 0; i < numEnemies; i++)
+                        {
+                            let posEnemy = enemies[i].getPos();
+                            arrayC[Math.round(posEnemy.y/pixelSize)][Math.round(posEnemy.x/pixelSize)] = 6;
+                        }
+                        while(filled != 0)
+                        {
+                            fillRec();
+                            
+                        }
+
+                        replacerFill();
+                        for (let i = 0; i < numEnemies; i++)
+                        {
+                            let posEnemy = enemies[i].getPos();
+                            arrayC[Math.round(posEnemy.y/pixelSize)][Math.round(posEnemy.x/pixelSize)] = 4;
+                        }
                     }
                 }
+
             }
             if(arrayC[y][x] == 4)
             {
@@ -492,7 +510,10 @@ function update()
     posPlOneB.y = posPl.y;
 
     player.draw();
-    player.update();
+    if(isStopped == false)
+    {
+        player.update();
+    }
 
 
     pposPl = player.getPos();
@@ -574,6 +595,7 @@ function replacerFill()
     }
 
     filled = 1;
+    coutSnakeSTP = 0;
 
 }
 
@@ -695,6 +717,7 @@ function gameReset()
 
     liveRemains = liveCountInBegining;
     scorePrc = 0;
+    
 
 
 
@@ -824,4 +847,9 @@ function variablesChangeWHST()
         numEnemies = 60;
         gameSpeed = 15;
     }
+}
+
+function stopedF()
+{
+    isStopped = false;
 }
