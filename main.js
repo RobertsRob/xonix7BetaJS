@@ -14,8 +14,6 @@ let gameSpeed = 50;
 
 let mainScore = 0;
 
-let isStoped = false;
-
 const percentNeedToNextLvl = 60;
 
 let hardnessMode = "easy";
@@ -313,10 +311,7 @@ function update()
 
 
     // movement variable change
-    if(isStoped)
-    {
-        movement = "stop";
-    }else if (keyA == true) {
+    if (keyA == true) {
         movement = "left";
     } else if (keyS == true) {
         movement = "down";
@@ -432,9 +427,6 @@ function update()
                 if(posPl.x/pixelSize == x && posPl.y/pixelSize == y && countSnake != 0)
                 {
                     //fill
-                    isStoped = true;
-                    setTimeout(notStopped, 300); 
-                    // alert("fill");
                     for (let i = 0; i < numEnemies; i++)
                     {
                         let posEnemy = enemies[i].getPos();
@@ -500,10 +492,7 @@ function update()
     posPlOneB.y = posPl.y;
 
     player.draw();
-    if(!isStoped)
-    {
-        player.update();
-    }
+    player.update();
 
 
     pposPl = player.getPos();
@@ -835,9 +824,4 @@ function variablesChangeWHST()
         numEnemies = 60;
         gameSpeed = 15;
     }
-}
-
-function notStopped()
-{
-    isStoped = false;
 }
